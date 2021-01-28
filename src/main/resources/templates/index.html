@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <title>Spring Security</title>
+    <meta charset="utf-8"/>
+    <link href="/css/main.css" rel="stylesheet" th:href="@{/css/main.css}"/>
+</head>
+<body>
+<div class="logout" sec:authorize="isAuthenticated()" th:fragment="logout">
+    Пользователь: <span sec:authentication="name"></span> |
+    Роли: <span sec:authentication="principal.authorities"></span>
+    <div>
+        <form action="#" method="post" th:action="@{/logout}">
+            <input type="submit" value="Logout"/>
+        </form>
+    </div>
+</div>
+<h1>Домашняя страница доступная всем</h1>
+<p>Для доступа к секретной части нужна аутентификация</p>
+<ul>
+    <li>Супер секретная страница <a href="/user/index" th:href="@{/user/index}">здесь</a></li>
+</ul>
+</body>
+</html>
